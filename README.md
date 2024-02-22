@@ -18,6 +18,7 @@ Weather forecast app on the Next.js
 * [Next.js](https://nextjs.org)
 * [React Query](https://tanstack.com/query/latest)
 * [Chart.js](https://www.chartjs.org/docs/latest/)
+* [OpenWeatherMap API](https://openweathermap.org/api)
 
 ---
 
