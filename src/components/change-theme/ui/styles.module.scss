@@ -1,0 +1,92 @@
+.changeThemeLoading, .changeTheme {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+}
+
+.changeThemeLoading span, .changeTheme > button {
+  height: 36px;
+  width: 36px;
+}
+
+.changeThemeLoading {
+  left: auto;
+  bottom: auto;
+
+  span {
+    left: inherit;
+    bottom: inherit;
+  }
+}
+
+.changeTheme {
+  div {
+    display: grid;
+    gap: 2px;
+    position: absolute;
+    background-color: var(--background-color);
+    box-shadow: var(--box-shadow);
+    padding: 4px;
+    border-radius: 10px;
+    top: 50px;
+    right: 0;
+    width: 126px;
+
+    button {
+      text-align: start;
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      transition: background-color .1s ease-in-out, color .1s ease-in-out;
+
+      &:hover {
+        background-color: var(--button-background-color);
+      }
+    }
+  }
+
+  button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.fadeIn {
+  animation: fade-in .2s ease-in
+}
+
+.fadeOut {
+  animation: fade-out .2s ease-out forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 580px) {
+  .changeTheme, .changeThemeLoading {
+    top: 20px;
+    right: 20px;
+  }
+}

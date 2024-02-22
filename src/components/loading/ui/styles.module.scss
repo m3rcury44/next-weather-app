@@ -1,0 +1,21 @@
+.loading {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  height: 100px;
+  width: 100px;
+  animation: spinner 1s ease infinite;
+  border: 5px solid transparent;
+  border-top-color: var(--heading-color);
+  border-radius: 50%;
+}
+
+@keyframes spinner {
+  0% {
+    rotate: 0;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
