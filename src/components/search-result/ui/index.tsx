@@ -6,7 +6,7 @@ import {useEventListener} from "@/shared/utils/hooks/useEventListener";
 
 interface ISearchResult {
     coordinates: ICoordinate[]
-    updateCookiesData: (name: string, lat: number, lon: number, fn: () => void) => void
+    updateCookiesData: (name: string, lat: number, lon: number, fn: () => void) => Promise<void>
     isOpen: boolean
 }
 
@@ -24,7 +24,7 @@ const SearchResult: FC<ISearchResult> = ({coordinates, isOpen, updateCookiesData
             coordinates[index].lat,
             coordinates[index].lon,
             () => setIndex(0)
-        )
+        ).then(r => r)
     }
 
     const onEnter = (e: KeyboardEvent) => {

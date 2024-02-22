@@ -15,8 +15,11 @@ import {useEventListener} from "@/shared/utils/hooks/useEventListener";
 import {useDebounce} from "@/shared/utils/hooks/useDebounce";
 import {ICoordinate} from "@/shared/types";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
+import {useRouter} from "next/navigation";
 
 const Search: FC<{ updateCookies: (coordinates: string) => Promise<void> }> = ({updateCookies}) => {
+
+    const router = useRouter()
 
     const [value, setValue] = useState('')
     const [debouncedValue, setDebouncedValue] = useState('')
@@ -61,10 +64,11 @@ const Search: FC<{ updateCookies: (coordinates: string) => Promise<void> }> = ({
         setValue('')
     }
 
-    const updateCookiesData = (name: string, lat: number, lon: number, fn: () => void) => {
+    const updateCookiesData = async (name: string, lat: number, lon: number, fn: () => void) => {
         setIsOpen(false)
-        updateCookies(JSON.stringify({name: name, lat: lat, lon: lon})).then(r => r)
+        await updateCookies(JSON.stringify({name: name, lat: lat, lon: lon}))
         fn()
+        router.refresh()
     }
 
     const handlePreventDefault = (e: KeyboardEvent) => {
