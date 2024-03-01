@@ -67,7 +67,7 @@ const SearchResult: FC<ISearchResult> = ({coordinates, isOpen, updateCookiesData
                             data-selected={index === i}
                             onClick={handleUpdateCookiesData}
                             item={item}
-                            handleSetHover={() => handleSetHover(i)}
+                            onMouseEnter={() => handleSetHover(i)}
                         />
                     ))}
                 </tbody>
