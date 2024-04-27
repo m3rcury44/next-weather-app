@@ -14,17 +14,11 @@ export default async function Main() {
     const lat = Number(cookiesData?.lat || '') || 40.7127281
     const lon = Number(cookiesData?.lon || '') || -74.0060152
 
-    const weather: IWeather = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.NEXT_PUBLIC_API_KEY}`
-    ).then(res => res.json())
-
-    const airQuality: IAirQuality = await fetch(
-        `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_API_KEY}`
-    ).then(res => res.json())
-
-    const forecast: IForecast = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.NEXT_PUBLIC_API_KEY}`
-    ).then(res => res.json())
+    const [weather, airQuality, forecast]: [weather: IWeather, airQuality: IAirQuality, forecast: IForecast] = await Promise.all([
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.NEXT_PUBLIC_API_KEY}`).then(res => res.json()),
+        fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_API_KEY}`).then(res => res.json()),
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.NEXT_PUBLIC_API_KEY}`).then(res => res.json())
+    ])
 
     const updateCookies = async (coordinates: string) => {
         "use server"
